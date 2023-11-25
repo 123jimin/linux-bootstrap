@@ -7,7 +7,7 @@ if ! lsb_release -a 2>/dev/null | grep -q "Distributor ID:\s*Debian"; then
 fi
 
 # Check for missing packages
-essential_packages=("git" "gcc" "curl")
+essential_packages=("git" "gcc" "curl" "unzip")
 essential_packages_str="${essential_packages[@]}"
 installed_packages=$(dpkg-query -W -f='${Package}\n' $essential_packages_str 2>/dev/null)
 
