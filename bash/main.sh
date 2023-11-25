@@ -11,7 +11,7 @@ if grep -q "$bashrc_start_marker" ~/.bashrc && grep -q "$bashrc_end_marker" ~/.b
 else
     echo -e "\n$bashrc_start_marker\n" >> ~/.bashrc
     cat "$bashrc_src_file" >> ~/.bashrc
-    echo -e "\n$bashrc_end_marker" >> ~/.bashrc
+    echo -e "\n\n$bashrc_end_marker" >> ~/.bashrc
 fi
 
 cp -f "$(dirname "$0")/bash_aliases.bash_aliases" ~/.bash_aliases
