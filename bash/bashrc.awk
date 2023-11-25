@@ -1,21 +1,21 @@
 #!/usr/bin/awk -f
 
 BEGIN {
-    print_new = 0;
+    in_block = 0;
 }
-
-$0 ~ end { print_new = 0; }
-!print_new { print; }
 
 $0 ~ beg {
-    print_new = 1;
-    while ((getline new_line < new_config) > 0) {
-        print new_line;
+    in_block = 1;
+    while ((getline line < new_config) > 0) {
+        print line;
     }
 }
 
-END {
-    if (print_new) {
-        print end;
-    }
+$0 ~ end {
+    in_block = 0;
+    next;
+}
+
+in_block == 0 {
+    print;
 }
