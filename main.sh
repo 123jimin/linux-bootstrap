@@ -9,7 +9,7 @@ fi
 # Check for missing packages
 essential_packages=("git" "gcc" "curl")
 essential_packages_str="${essential_packages[@]}"
-installed_packages=$(dpkg-query -W -f='${Package}\n' "$essential_packages_str" 2>/dev/null)
+installed_packages=$(dpkg-query -W -f='${Package}\n' $essential_packages_str 2>/dev/null)
 
 for pkg in "${essential_packages[@]}"; do
     if ! grep -q "^$pkg$" <<< "$installed_packages"; then
@@ -17,7 +17,26 @@ for pkg in "${essential_packages[@]}"; do
     fi
 done
 
-echo "${missing_packages[@]}"
+if [ ${#missing_packages[@]} -ne 0 ]; then
+    echo "The following packages are missing: ${missing_packages[@]}"
+    if [ $(id -u) -eq 0 ]; then
+        read -p "Do you want to install them? (Y/n)" choice
+
+        if [[ $choice =~ ^[Yy]$ ]] || [ -z "$choice" ]; then
+            apt update
+            apt install -y "${missing_packages[@]}"
+        else
+            echo "Install the packages by executing the following line by yourself."
+            echo "apt update && apt install -y ${missing_packages[@]}"
+            exit 1
+        fi
+
+    else
+        echo "Install the packages by executing the following line by yourself."
+        echo "sudo apt update && sudo apt install -y ${missing_packages[@]}"
+        exit 1
+    fi
+fi
 
 cleanup() {
     echo "Cleaning up..."
@@ -26,6 +45,11 @@ cleanup() {
 
 trap cleanup EXIT
 
+# Clone the repository
 tmp_dir=$(mktemp -d)
+git clone https://github.com/123jimin/linux-bootstrap "$tmp_dir"
 
-# Check whether essential pacakges are installed.
+cd ~
+for script in "$temp_dir"/*/main.sh; do
+    bash "$script"
+done
