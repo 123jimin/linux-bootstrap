@@ -50,6 +50,6 @@ tmp_dir=$(mktemp -d)
 git clone https://github.com/123jimin/linux-bootstrap "$tmp_dir"
 
 cd ~
-for script in "$temp_dir"/*/main.sh; do
+for script in "$tmp_dir"/*/main.sh; do
     bash "$script"
 done
