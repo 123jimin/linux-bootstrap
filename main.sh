@@ -50,6 +50,11 @@ tmp_dir=$(mktemp -d)
 git clone https://github.com/123jimin/linux-bootstrap "$tmp_dir"
 
 cd ~
+
+echo "Initializing..."
+
 for script in "$tmp_dir"/*/main.sh; do
     bash "$script"
 done
+
+echo "Completed!"

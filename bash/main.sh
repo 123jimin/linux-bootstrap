@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Initializing bash"
+echo "- Bash (~/.bashrc)"
 
 bashrc_src_file="$(dirname "$0")/bashrc.bashrc"
 bashrc_awk_file="$(dirname "$0")/bashrc.awk"
@@ -16,5 +16,7 @@ else
     cat "$bashrc_src_file" >> ~/.bashrc
     echo -e "\n$bashrc_end_marker" >> ~/.bashrc
 fi
+
+echo "- Bash Aliases (~/.bash_aliases)"
 
 cp -f "$(dirname "$0")/bash_aliases.bash_aliases" ~/.bash_aliases
