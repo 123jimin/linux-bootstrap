@@ -6,6 +6,8 @@ Personal Linux Environment Bootstrapper
 curl -s https://raw.githubusercontent.com/123jimin/linux-bootstrap/main/main.sh | bash
 ```
 
+WARNING: running this script overrides all relevant config files.
+
 ## Initializations
 
 * Vim: `.vimrc`
