@@ -7,6 +7,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'cespare/vim-toml'
+Plugin 'chr4/nginx.vim'
 call vundle#end()
 
 filetype plugin on
