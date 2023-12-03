@@ -14,4 +14,4 @@ WARNING: running this script overrides all relevant config files.
   * Various initial configs based on personal perferences.
   * Installs Vundle with several default plugins.
 * Bash: `.bashrc`, `bash_aliases`
-* Top: `.toprc`
+* Node.js
