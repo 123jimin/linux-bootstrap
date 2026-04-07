@@ -2,7 +2,7 @@
 
 echo "- Node.js"
 
-NODE_MAJOR=20
+NODE_MAJOR=24
 
 check_node_version() {
     if ! command -v node &> /dev/null; then
