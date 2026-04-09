@@ -52,4 +52,4 @@ set pastetoggle=<F2>
 au FileType yaml set tabstop=4 shiftwidth=4 expandtab
 
 " .bash_aliases highlight
-au BufNewFile,BufRead .bash_aliases call SetFileTypeSH("bash")
+autocmd BufNewFile,BufRead .bash_aliases setfiletype bash
