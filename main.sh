@@ -1,8 +1,20 @@
 #!/usr/bin/env bash
 
 # Check if the distro is Debian-based
-if ! lsb_release -a 2>/dev/null | grep -q "Distributor ID:\s*Debian"; then
-    echo "This script is intended to be run on Debian-based distros."
+if [ -r /etc/os-release ]; then
+    . /etc/os-release
+
+    case " $ID $ID_LIKE " in
+        *" debian "*)
+            # Debian or a Debian derivative (Ubuntu, Mint, etc.)
+            ;;
+        *)
+            echo "This script is intended for Debian-based distros."
+            exit 1
+            ;;
+    esac
+else
+    echo "Cannot determine distro: /etc/os-release not found."
     exit 1
 fi
 
